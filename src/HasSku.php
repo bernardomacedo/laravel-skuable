@@ -96,7 +96,7 @@ trait HasSku
             return $this->$SkuField;
         }
 
-        return substr(strtoupper(iconv('utf-8', 'ascii//TRANSLIT',str_replace(' ', '', $this->$SkuField))), 0, 3).$this->SkuOptions->SkuSeparator.substr(str_shuffle(str_repeat(str_pad(0123456789, 8, rand(0,9).rand(0,9), STR_PAD_LEFT), 2)), 0, 8);
+        return substr(strtoupper(iconv('utf-8', 'ascii//TRANSLIT',str_replace(' ', '', $this->$SkuField))), 0, 3).$this->SkuOptions->SkuSeparator.substr(str_shuffle(str_repeat(str_pad('0123456789', 8, rand(0,9).rand(0,9), STR_PAD_LEFT), 2)), 0, 8);
     }
 
     /**
@@ -138,7 +138,7 @@ trait HasSku
         $originalSku = $originalSku[0];
 
         while ($this->otherRecordExistsWithSku($Sku) || $Sku === '') {
-            $Sku = $originalSku.$this->SkuOptions->SkuSeparator.substr(str_shuffle(str_repeat(str_pad(0123456789, 8, rand(0,9).rand(0,9), STR_PAD_LEFT), 2)), 0, 8);
+            $Sku = $originalSku.$this->SkuOptions->SkuSeparator.substr(str_shuffle(str_repeat(str_pad('0123456789', 8, rand(0,9).rand(0,9), STR_PAD_LEFT), 2)), 0, 8);
         }
 
         return $Sku;
